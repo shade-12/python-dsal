@@ -1,5 +1,4 @@
-# Data Structure and Algorithms in Python
----
+### Data Structure and Algorithms in Python
 
 1. Stack
     - Determine if brackets are balanced
