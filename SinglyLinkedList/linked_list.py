@@ -29,14 +29,18 @@ class LinkedList():
         self.head = new_node
 
     def insert_after(self, prev_node, data):
-        
+        if not prev_node:
+            print("Pevious node does not exist.")
+            return
+        new_node = Node(data)
+        new_node.next = prev_node.next
+        prev_node.next = new_node
 
 llist = LinkedList()
 llist.append("A")
 llist.append("B")
-llist.append("C")
-llist.append("D")
 llist.prepend("X")
+llist.insert_after(llist.head.next.next, "Y")
 
 
 llist.print_list()  
