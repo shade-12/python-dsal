@@ -5,6 +5,9 @@ Convert decimal integer to binary
 '''
 
 def dec_to_bin(dec_num):
+    if dec_num == 0:
+        return 0
+        
     s = Stack()
     num = dec_num
 
