@@ -23,11 +23,20 @@ class LinkedList():
             last_node = last_node.next
         last_node.next = Node(data)
 
+    def prepend(self, data):
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+
+    def insert_after(self, prev_node, data):
+        
+
 llist = LinkedList()
 llist.append("A")
 llist.append("B")
 llist.append("C")
 llist.append("D")
+llist.prepend("X")
 
 
 llist.print_list()  
