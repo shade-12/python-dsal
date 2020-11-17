@@ -14,17 +14,10 @@ class LinkedList():
             print(cur_node.data, end = end)
             cur_node = cur_node.next
 
-    def length(self):
-        cur_node = self.head
-
-        if not cur_node:
+    def length(self, node):
+        if not node:
             return 0
-
-        count = 1
-        while cur_node.next != None:
-            cur_node = cur_node.next
-            count += 1
-        return count
+        return 1 + self.length(node.next)
 
     def append(self, data):
         if self.head is None:
@@ -68,7 +61,7 @@ class LinkedList():
         cur_node = None
 
     def delete_node_at_pos(self, pos):
-        if pos >= self.length():
+        if pos >= self.length(self.head):
             return
 
         cur_node = self.head
@@ -90,6 +83,8 @@ class LinkedList():
         prev_node.next = cur_node.next
         cur_node = None
 
+    def swap_nodes(self, key_1, key_2):
+
 
 llist = LinkedList()
 llist.append("A")
@@ -100,7 +95,7 @@ llist.prepend("X")
 llist.insert_after(llist.head.next.next, "Y")
 llist.delete_node("B")
 
-print(llist.length())
+print(llist.length(llist.head))
 
 
 llist.print_list()  
