@@ -37,12 +37,6 @@ def is_parentheses_balanced(parentheses):
     return s.is_empty()
 
 
-
-print("String : (((({})))) Balanced or not?")
-print(is_parentheses_balanced("(((({}))))"))
-
-print("String : [][]]] Balanced or not?")
-print(is_parentheses_balanced("[][]]]"))
-
-print("String : [][] Balanced or not?")
-print(is_parentheses_balanced("[][]"))
+assert is_parentheses_balanced("(((({}))))") == True, "'(((({}))))' should return True"
+assert is_parentheses_balanced("[][]]]") == False, "'[][]]]' should return False"
+assert is_parentheses_balanced("[][]") == True, "'[][]' should return True"
