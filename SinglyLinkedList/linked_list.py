@@ -30,17 +30,38 @@ class LinkedList():
 
     def insert_after(self, prev_node, data):
         if not prev_node:
-            print("Pevious node does not exist.")
+            print("Previous node does not exist.")
             return
         new_node = Node(data)
         new_node.next = prev_node.next
         prev_node.next = new_node
+
+    def delete_node(self, key):
+        cur_node = self.head
+
+        if cur_node and cur_node.data == key:
+            self.head = cur_node.next
+            cur_node = None
+            return
+
+        prev_node = None
+        while cur_node and cur_node.data != key:
+            prev_node = cur_node
+            cur_node = cur_node.next
+
+        if cur_node is None:
+            return
+
+        prev_node.next = cur_node.next
+        cur_node = None
+
 
 llist = LinkedList()
 llist.append("A")
 llist.append("B")
 llist.prepend("X")
 llist.insert_after(llist.head.next.next, "Y")
+llist.delete_node("B")
 
 
 llist.print_list()  
