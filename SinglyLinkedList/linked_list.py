@@ -138,7 +138,44 @@ class LinkedList():
         self.head = _reverse_recursive(curr=self.head, prev=None)
         
     def merge_sorted(self, llist):
+        p = self.head
+        q = llist.head
+        r = None
+
+        if not p:
+            return q
+        if not q:
+            return p
         
+        if p and q:
+            if p.data <= q.data:
+                r = p
+                p = p.next
+            else:
+                r = q
+                q = q.next
+            new_head = r
+        while p and q:
+            if p.data <= q.data:
+                r.next = p
+                r = p
+                p = p.next
+            else:
+                r.next = q
+                r = q
+                q = q.next
+        # One of the list has reached the end
+        if not p:
+            r.next = q
+        if not q:
+            r.next = p
+        return new_head
+
+        def remove_duplicates(self):
+          curr = self.head
+          prev = None
+          dup_values = dict()
+
           
 
 llist = LinkedList()
