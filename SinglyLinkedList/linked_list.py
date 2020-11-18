@@ -244,6 +244,24 @@ class LinkedList():
         self.head = p.next
         p.next = None
 
+    '''
+    Move the tail of a linked list to head.
+    '''
+    def move_tail_to_head(self):
+        # Return if linked list has length is less than 2
+        if not self.head or not self.head.next:
+            return
+        
+        prev = None
+        tail = self.head
+        # Find the tail node
+        while tail.next:
+            prev = tail
+            tail = tail.next
+        prev.next = None
+        tail.next = self.head
+        self.head = tail
+
 
 llist = LinkedList()
 llist.append("A")

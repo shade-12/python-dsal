@@ -15,7 +15,7 @@ def is_palindrome_string(head):
 '''
 Check if a linked list is a palindrome using two pointers
 '''
-def is_palindrome_poniters(head):
+def is_palindrome_pointers(head):
     if head:
         p = head
         q = head
