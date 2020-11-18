@@ -187,10 +187,27 @@ class LinkedList():
                 prev = curr
             curr = prev.next
 
-        
+    def print_nth_from_last(self, n):
+        len = self.length(self.head)
+        if (n > len):
+            return
+        curr = self.head
+
+        while curr:
+            if len == n:
+                print(curr.data)
+                return curr.data
+            len -= 1
+            curr = curr.next
+        if not curr:
+            return
 
 
 llist = LinkedList()
+llist.append("A")
+llist.append("A")
+llist.append("A")
+llist.append("A")
 llist.append("A")
 llist.append("B")
 llist.append("C")
@@ -225,4 +242,8 @@ llist.print_list()
 
 llist.reverse_recursive()
 print("Reversed(recursive) list: ", end="")
+llist.print_list()
+
+llist.remove_duplicates()
+print("After remove duplicates: ", end="")
 llist.print_list()
