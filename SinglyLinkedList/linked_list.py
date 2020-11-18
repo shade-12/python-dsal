@@ -202,6 +202,24 @@ class LinkedList():
         if not curr:
             return
 
+    def count_occurences_iterative(self, data):
+        count = 0
+        curr = self.head
+        while curr:
+            if curr.data == data:
+                count += 1
+            curr = curr.next
+        return count
+
+    def count_occurences_recursive(self, node, data):
+        if not node:
+            return 0
+        if node.data == data:
+            return 1 + self.count_occurences_recursive(node.next, data)
+        else:
+            return self.count_occurences_recursive(node.next, data)
+        
+
 
 llist = LinkedList()
 llist.append("A")
@@ -244,6 +262,5 @@ llist.reverse_recursive()
 print("Reversed(recursive) list: ", end="")
 llist.print_list()
 
-llist.remove_duplicates()
-print("After remove duplicates: ", end="")
-llist.print_list()
+count = llist.count_occurences_recursive(llist.head, "A")
+print("No of occurences of A: ", count)
