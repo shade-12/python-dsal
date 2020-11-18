@@ -171,12 +171,24 @@ class LinkedList():
             r.next = p
         return new_head
 
-        def remove_duplicates(self):
-          curr = self.head
-          prev = None
-          dup_values = dict()
+    def remove_duplicates(self):
+        curr = self.head
+        prev = None
+        values = set()
 
-          
+        while curr:
+            if curr.data in values:
+                # Remove curr node
+                prev.next = curr.next
+                curr = None
+            else:
+                # Add to set
+                values.add(curr.data)
+                prev = curr
+            curr = prev.next
+
+        
+
 
 llist = LinkedList()
 llist.append("A")
