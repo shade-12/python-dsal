@@ -218,13 +218,34 @@ class LinkedList():
             return 1 + self.count_occurences_recursive(node.next, data)
         else:
             return self.count_occurences_recursive(node.next, data)
-        
+
+    def rotate(self, k):
+        if k > self.length(self.head):
+            return
+
+        p = self.head
+        q = self.head
+        prev = None
+        count = 0
+        # Find pivot node
+        while p and count < k:
+            prev = p
+            p, q = p.next, q.next
+            count += 1
+        # Found pivot node
+        p = prev
+        # Find last node
+        while q:
+            prev = q
+            q = q.next
+        q = prev
+
+        q.next = self.head
+        self.head = p.next
+        p.next = None
 
 
 llist = LinkedList()
-llist.append("A")
-llist.append("A")
-llist.append("A")
 llist.append("A")
 llist.append("A")
 llist.append("B")
@@ -264,3 +285,7 @@ llist.print_list()
 
 count = llist.count_occurences_recursive(llist.head, "A")
 print("No of occurences of A: ", count)
+
+llist.rotate(3)
+print("Rotated: ", end="")
+llist.print_list()
