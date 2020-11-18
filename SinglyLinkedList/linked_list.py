@@ -137,7 +137,8 @@ class LinkedList():
 
         self.head = _reverse_recursive(curr=self.head, prev=None)
         
-            
+    def merge_sorted(self, llist):
+        
           
 
 llist = LinkedList()
