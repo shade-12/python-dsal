@@ -262,6 +262,50 @@ class LinkedList():
         tail.next = self.head
         self.head = tail
 
+    def sum_two_lists(self, llist):
+        p = self.head
+        q = llist.head
+
+        if not p:
+            return llist
+        if not q:
+            return self
+
+        carry = 0
+        digit = p.data + q.data
+        if digit >= 10:
+            carry = 1
+            digit -= 10
+        r = Node(digit)
+        new_head = r
+        p = p.next
+        q = q.next
+
+        while p and q:
+            digit = p.data + q.data + carry
+            if digit >= 10:
+                carry = 1
+                digit -= 10
+            else:
+                carry = 0
+            r.next = Node(digit)
+            p = p.next
+            q = q.next
+            r = r.next
+        # One of the list has reached the end
+        if not p:
+            r.next = q
+            if q:
+                q.data += carry
+        if not q:
+            r.next = p
+            if p:
+                p.data += carry
+        self.head = new_head
+        return self
+
+        
+
 
 llist = LinkedList()
 llist.append("A")
