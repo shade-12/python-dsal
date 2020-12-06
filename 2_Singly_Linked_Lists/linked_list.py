@@ -186,7 +186,40 @@ class LinkedList():
     ########## START: MERGE TWO SORTED LINKED LISTS ##########
 
     def merge_sorted(self, other):
-        
+        p, q, s = self.head, other.head, None
+
+        if not p:
+            return q
+        if not q:
+            return p
+
+        if p.data <= q.data:
+            s = p
+            p = p.next
+        else:
+            s = q
+            q = q.next
+        new_head = s
+
+        while p and q:
+            if q.data <= p.data:
+                nxt = q.next
+                s.next = q
+                s = s.next
+                q = nxt
+            else:
+                nxt = p.next
+                s.next = p
+                s = s.next
+                p = nxt
+
+        if not p:
+            s.next = q
+        if not q:
+            s.next = p
+
+        return new_head
+            
     ########## START: MERGE TWO SORTED LINKED LISTS ##########
 
 
@@ -201,3 +234,21 @@ print(llist.len_recursive(llist.head))
 # llist.swap_nodes("A", "C")
 llist.reverse_recursive()
 llist.print_list()
+
+llist_1 = LinkedList()
+llist_2 = LinkedList()
+
+llist_1.append(1)
+llist_1.append(5)
+llist_1.append(7)
+llist_1.append(9)
+llist_1.append(10)
+
+llist_2.append(2)
+llist_2.append(3)
+llist_2.append(4)
+llist_2.append(6)
+llist_2.append(8)
+
+llist_1.merge_sorted(llist_2)
+llist_1.print_list()
