@@ -220,7 +220,34 @@ class LinkedList():
 
         return new_head
             
-    ########## START: MERGE TWO SORTED LINKED LISTS ##########
+    ########## END: MERGE TWO SORTED LINKED LISTS ##########
+
+    ########## START: REMOVE DUPLICATE ##########
+    def remove_duplicate(self):
+        if not self.head or not self.head.next:
+            return
+
+        store = dict()
+        prev, curr = None, self.head
+        while curr:
+            if curr.data in store:
+                # remove curr node
+                prev.next = curr.next
+                curr = None
+            else:
+                store[curr.data] = 1
+                prev = curr
+            curr = prev.next
+
+    ########## END: REMOVE DUPLICATE ##########
+
+    ########## START: NTH TO LAST NODE ##########
+
+    def print_nth_to_last(self, n):
+        
+
+
+    ########## START: NTH TO LAST NODE ##########
 
 
 llist = LinkedList()
