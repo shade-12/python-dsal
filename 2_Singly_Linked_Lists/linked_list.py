@@ -289,6 +289,28 @@ class LinkedList():
 
     ########## END: COUNT OCCURENCES ##########
 
+    ########## START: ROTATE ##########
+
+    def rotate(self, k):
+        if not self.head:
+            return
+
+        count, curr, pivot = 0, self.head, None
+        while curr.next:
+            count += 1
+            if count == k:
+                pivot = curr
+            curr = curr.next
+
+        if not pivot:
+            print("Input is greater than linked list length.")
+            return
+
+        curr.next = self.head
+        self.head = pivot.next
+        pivot.next = None
+
+    ########## END: ROTATE ##########
 
 llist = LinkedList()
 llist.append("A")
@@ -332,3 +354,15 @@ llist_2.append(4)
 llist_2.append(1)
 print(llist_2.count_occurences_iterative(1))
 print(llist_2.count_occurences_recursive(llist_2.head, 1))
+
+llist = LinkedList()
+llist.append(1)
+llist.append(2)
+llist.append(3)
+llist.append(4)
+llist.append(5)
+llist.append(6)
+llist.print_list()
+
+llist.rotate(4)
+llist.print_list()
