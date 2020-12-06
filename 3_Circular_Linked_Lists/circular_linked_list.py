@@ -7,7 +7,24 @@ class CircularLinkedList():
     def __init__(self):
         self.head = None
 
+    def __len__(self):
+        """
+        Calculate length of circular linked list.
+        """
+        if not self.head:
+            return 0
+        if self.head == self.head.next:
+            return 1
+        curr, count = self.head, 0
+        while curr.next != self.head:
+            curr = curr.next
+            count += 1
+        return count
+
     def print_list(self):
+        """
+        Print all elements in circular linked list starting from head.
+        """
         node = self.head
         while node:
             end = None if node.next == self.head else " -> "
@@ -19,6 +36,9 @@ class CircularLinkedList():
     ########## START: INSERTION ##########
 
     def append(self, data):
+        """
+        Append new node at the end of circular linked list.
+        """
         if not self.head:
             new_node = Node(data)
             self.head = new_node
@@ -35,6 +55,9 @@ class CircularLinkedList():
         curr.next = new_node
 
     def prepend(self, data):
+        """
+        Prepend new node at the head of circular linked list.
+        """
         new_node = Node(data)
         if not self.head:
             self.head = new_node
@@ -52,6 +75,10 @@ class CircularLinkedList():
     ########## START: REMOVE NODE ##########
 
     def remove(self, key):
+        """
+        Remove node with data = key from the circular linked list.
+        Assume that all elements are unique.
+        """
         if not self.head:
             return
 
@@ -79,6 +106,14 @@ class CircularLinkedList():
                 curr = curr.next
 
     ######### END: REMOVE NODE ##########
+
+    ######### START: SPLIT LINKED LIST INTO TWO HALVES ##########
+
+    def split(self, k):
+        length = len(self)
+        
+
+    ######### END: SPLIT LINKED LIST INTO TWO HALVES ##########
 
 cllist = CircularLinkedList()
 cllist.append("C")
