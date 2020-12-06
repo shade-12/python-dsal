@@ -11,8 +11,11 @@ class LinkedList():
     def print_list(self):
         curr_node = self.head
         while curr_node:
-            print(curr_node.data, end=" -> ")
+            end = None if curr_node.next is None else " -> "
+            print(curr_node.data, end=end)
             curr_node = curr_node.next
+
+    ########## START: INSERTION ##########
 
     def append(self, data):
         new_node = Node(data)
@@ -36,3 +39,65 @@ class LinkedList():
         new_node = Node(data)
         new_node.next = prev_node.next
         prev_node.next = new_node
+
+    ########## END: INSERTION ##########
+
+    ########## START: DELETION BY VALUE ##########
+
+    def delete_node(self, key):
+        tmp = self.head
+        # Node to remove is head node
+        if tmp and tmp.data == key:
+            self.head = self.head.next
+            tmp = None
+            return
+        # Node to remove is not head node
+        prev = None
+        while tmp.next:
+            if tmp.data == key:
+                prev.next = tmp.next
+                tmp = None
+                return
+            prev = tmp
+            tmp = tmp.next
+
+    ########## END: DELETION BY VALUE ##########
+
+    ########## START: DELETION BY POSITION ##########
+
+    def delete_node_at_pos(self, pos):
+        if pos < 0 or self.head is None:
+            return
+
+        tmp = self.head
+        # Node to remove is at position 0
+        if  pos == 0:
+            self.head = self.head.next
+            tmp = None
+            return
+        # Node to remove is not at position 0
+        prev = None
+        count = 0
+        while tmp.next:
+            if count == pos:
+                prev.next = tmp.next
+                tmp = None
+                return
+            prev = tmp
+            tmp = tmp.next
+            count += 1
+
+    ########## END: DELETION BY POSITION ##########
+
+
+llist = LinkedList()
+llist.append("A")
+llist.append("B")
+llist.append("C")
+llist.append("D")
+
+llist.delete_node("B")
+llist.delete_node("E")
+llist.delete_node_at_pos(1)
+
+llist.print_list()
