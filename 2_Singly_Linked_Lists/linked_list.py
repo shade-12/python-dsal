@@ -244,10 +244,50 @@ class LinkedList():
     ########## START: NTH TO LAST NODE ##########
 
     def print_nth_to_last(self, n):
-        
+        p, q = self.head, self.head
+        count = 0
+        while q:
+            if count >= n:
+                break
+            q = q.next
+            count += 1
 
+        if not q:
+            print("Input number is out of range.")
+            return
 
-    ########## START: NTH TO LAST NODE ##########
+        while q:
+            q = q.next
+            p = p.next
+
+        return p.data
+
+    ########## END: NTH TO LAST NODE ##########
+
+    ########## START: COUNT OCCURENCES ##########
+
+    def count_occurences_iterative(self, key):
+        if not self.head:
+            return 0
+
+        curr_node, count = self.head, 0
+        while curr_node:
+            if curr_node.data == key:
+                count += 1
+            curr_node = curr_node.next
+
+        return count
+
+    def count_occurences_recursive(self, node, key):
+        if not node:
+            return 0
+
+        if node.data == key:
+            return 1 + self.count_occurences_recursive(node.next, key)
+        else:
+            return self.count_occurences_recursive(node.next, key)
+
+    ########## END: COUNT OCCURENCES ##########
 
 
 llist = LinkedList()
@@ -279,3 +319,16 @@ llist_2.append(8)
 
 llist_1.merge_sorted(llist_2)
 llist_1.print_list()
+
+print(llist_1.print_nth_to_last(3))
+
+llist_2 = LinkedList()
+llist_2.append(1)
+llist_2.append(2)
+llist_2.append(1)
+llist_2.append(3)
+llist_2.append(1)
+llist_2.append(4)
+llist_2.append(1)
+print(llist_2.count_occurences_iterative(1))
+print(llist_2.count_occurences_recursive(llist_2.head, 1))
