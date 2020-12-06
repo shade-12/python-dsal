@@ -152,6 +152,43 @@ class LinkedList():
 
     ########## END: NODE SWAP ##########
 
+    ########## START: REVERSE ##########
+
+    def reverse_iterative(self):
+        if self.head is None or self.head.next is None:
+            return
+        
+        prev, curr = None, self.head
+        while curr:
+            tmp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = tmp
+
+        self.head = prev
+
+    def reverse_recursive(self):
+        if self.head is None or self.head.next is None:
+            return
+
+        def _reverse_recursive(curr, prev):
+            if not curr:
+                return prev
+
+            tmp = curr.next
+            curr.next = prev
+            return _reverse_recursive(tmp, curr)
+
+        self.head = _reverse_recursive(self.head, None)
+
+    ########## END: REVERSE ##########
+
+    ########## START: MERGE TWO SORTED LINKED LISTS ##########
+
+    def merge_sorted(self, other):
+        
+    ########## START: MERGE TWO SORTED LINKED LISTS ##########
+
 
 llist = LinkedList()
 llist.append("A")
@@ -161,5 +198,6 @@ llist.append("D")
 
 print(llist.len_recursive(llist.head))
 
-llist.swap_nodes("A", "C")
+# llist.swap_nodes("A", "C")
+llist.reverse_recursive()
 llist.print_list()
