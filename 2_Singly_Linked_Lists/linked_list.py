@@ -120,11 +120,11 @@ class LinkedList():
         prev_a, curr_a, prev_b, curr_b = None, None, None, None
         found_a, found_b = False, False
         while curr:
-            if curr.data == key1:
+            if curr.data == key1 and not found_a:
                 prev_a = prev
                 curr_a = curr
                 found_a = True
-            if curr.data == key2:
+            if curr.data == key2 and not found_b:
                 prev_b = prev
                 curr_b = curr
                 found_b = True
@@ -132,6 +132,18 @@ class LinkedList():
                 break
             prev = curr
             curr = curr.next
+
+        if prev_a:
+            prev_a.next = curr_b
+        else:
+            self.head = curr_b
+
+        if prev_b:
+            prev_b.next = curr_a
+        else:
+            self.head = curr_b
+            
+        curr_a.next, curr_b.next = curr_b.next, curr_a.next
 
 
     ########## END: NODE SWAP ##########
@@ -143,10 +155,7 @@ llist.append("B")
 llist.append("C")
 llist.append("D")
 
-llist.delete_node("B")
-llist.delete_node("E")
-llist.delete_node_at_pos(1)
-llist.delete_node_at_pos(1)
 print(llist.len_recursive(llist.head))
 
+llist.swap_nodes("A", "C")
 llist.print_list()
