@@ -106,6 +106,36 @@ class LinkedList():
 
     ########## END: LENGTH ##########
 
+    ########## START: NODE SWAP ##########
+
+    # Case 1: Neither Node 1 nor Node 2 is head node
+    # Case 2: One of Node 1 and Node 2 is head node
+    def swap_nodes(self, key1, key2):
+        # Assume no two keys are the same within the linked list
+        # If key1 is same as key2, that means they are pointing to the same node
+        if key1 == key2 or not self.head:
+            return
+
+        prev, curr = None, self.head
+        prev_a, curr_a, prev_b, curr_b = None, None, None, None
+        found_a, found_b = False, False
+        while curr:
+            if curr.data == key1:
+                prev_a = prev
+                curr_a = curr
+                found_a = True
+            if curr.data == key2:
+                prev_b = prev
+                curr_b = curr
+                found_b = True
+            if found_a and found_b:
+                break
+            prev = curr
+            curr = curr.next
+
+
+    ########## END: NODE SWAP ##########
+
 
 llist = LinkedList()
 llist.append("A")
