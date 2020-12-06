@@ -133,6 +133,10 @@ class LinkedList():
             prev = curr
             curr = curr.next
 
+        # One of the keys does not exist in the linked list, unable to perform swap
+        if not curr_a or not curr_b:
+            return
+
         if prev_a:
             prev_a.next = curr_b
         else:
@@ -142,7 +146,7 @@ class LinkedList():
             prev_b.next = curr_a
         else:
             self.head = curr_b
-            
+
         curr_a.next, curr_b.next = curr_b.next, curr_a.next
 
 
