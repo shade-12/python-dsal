@@ -15,6 +15,8 @@ class CircularLinkedList():
             node = node.next
             if node == self.head:
                 break
+    
+    ########## START: INSERTION ##########
 
     def append(self, data):
         if not self.head:
@@ -45,11 +47,46 @@ class CircularLinkedList():
             self.head = new_node
             curr.next = new_node
 
+    ########## END: INSERTION ##########
+
+    ########## START: REMOVE NODE ##########
+
+    def remove(self, key):
+        if not self.head:
+            return
+
+        # Case 1: Node to be removed is head node
+        curr = self.head
+        if curr.data == key:
+            # Find the last node before head
+            while curr.next != self.head:
+                curr = curr.next
+            # Only one element in the circular linked list
+            if self.head == self.head.next:
+                self.head = None
+            else:
+                curr.next = self.head.next
+                self.head = curr.next
+        else:
+            # Case 2: Node to be removed is not head node
+            prev = None
+            while curr.next != self.head:
+                if curr.data == key:
+                    prev.next = curr.next
+                    curr = None
+                    return
+                prev = curr
+                curr = curr.next
+
+    ######### END: REMOVE NODE ##########
 
 cllist = CircularLinkedList()
 cllist.append("C")
 cllist.append("D")
 cllist.prepend("B")
 cllist.prepend("A")
+
+cllist.remove("A")
+cllist.remove("C")
 cllist.print_list()
 
