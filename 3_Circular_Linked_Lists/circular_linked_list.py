@@ -137,15 +137,50 @@ class CircularLinkedList():
         self.print_list()
         second_list.print_list()
 
-
     ######### END: SPLIT LINKED LIST INTO TWO HALVES ##########
 
-cllist = CircularLinkedList()
-cllist.append("A")
-cllist.append("B")
-cllist.append("C")
-cllist.append("D")
-cllist.append("E")
-cllist.append("F")
+    ######## START: JOSEPHUS PROBLEM ##########
 
-cllist.split()
+    def remove_node(self, node):
+        if self.head == node:
+            curr = self.head 
+            while curr.next != self.head:
+                curr = curr.next
+            if self.head == self.head.next:
+                self.head = None
+            else:
+                curr.next = self.head.next 
+                self.head = self.head.next
+        else:
+            curr = self.head 
+            prev = None
+            while curr.next != self.head:
+                prev = curr 
+                curr = curr.next 
+                if curr == node:
+                    prev.next = curr.next
+                    curr = curr.next
+
+    def josephus_circle(self, step):
+        curr = self.head
+        while len(self) > 1:
+            count = 1
+            while count != step:
+                curr = curr.next
+                count += 1
+            nxt = curr.next
+            self.remove_node(curr)
+            curr = nxt
+
+
+    ######### END: JOSEPHUS PROBLEM ##########
+
+cllist = CircularLinkedList()
+cllist.append(1)
+cllist.append(2)
+cllist.append(3)
+cllist.append(4)
+
+
+cllist.josephus_circle(2)
+cllist.print_list()
