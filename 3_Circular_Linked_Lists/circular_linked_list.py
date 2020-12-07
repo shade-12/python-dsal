@@ -13,9 +13,7 @@ class CircularLinkedList():
         """
         if not self.head:
             return 0
-        if self.head == self.head.next:
-            return 1
-        curr, count = self.head, 0
+        curr, count = self.head, 1
         while curr.next != self.head:
             curr = curr.next
             count += 1
@@ -109,19 +107,45 @@ class CircularLinkedList():
 
     ######### START: SPLIT LINKED LIST INTO TWO HALVES ##########
 
-    def split(self, k):
-        length = len(self)
-        
+    def split(self):
+        size = len(self)
+        if size == 0:
+            return None
+        if size == 1:
+            return self.head
+
+        mid = size // 2
+        curr = self.head
+
+        prev, head2 = None, self.head
+        count = 0
+        while count < mid:
+            prev = head2
+            head2 = head2.next
+            count += 1
+        prev.next = self.head
+
+        second_list = CircularLinkedList()
+        # Find last node in the cycle list
+        curr = head2
+        while curr.next != self.head:
+            second_list.append(curr.data)
+            curr = curr.next
+        second_list.append(curr.data)
+        curr.next = head2
+
+        self.print_list()
+        second_list.print_list()
+
 
     ######### END: SPLIT LINKED LIST INTO TWO HALVES ##########
 
 cllist = CircularLinkedList()
+cllist.append("A")
+cllist.append("B")
 cllist.append("C")
 cllist.append("D")
-cllist.prepend("B")
-cllist.prepend("A")
+cllist.append("E")
+cllist.append("F")
 
-cllist.remove("A")
-cllist.remove("C")
-cllist.print_list()
-
+cllist.split()
