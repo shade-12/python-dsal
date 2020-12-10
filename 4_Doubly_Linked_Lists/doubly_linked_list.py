@@ -210,6 +210,35 @@ class DoublyLinkedList():
 
     ########## END: REMOVE DUPLICATES ##########
 
+    ########## START: PAIRS WITH SUMS ##########
+
+    def pairs_with_sum(self, sum_val):
+        """
+        Find all pairs(in order) from the linked list that adds up to sum_val.
+        """
+        if not self.head:
+            return list()
+
+        curr = self.head
+        store, result = dict(), list()
+        while curr:
+            if curr.data in store:
+                # Found a pair
+                result.append([sum_val - curr.data, curr.data])
+                store[curr.data] -= 1
+                if store[curr.data] == 0:
+                    del store[curr.data]
+            else:
+                val = sum_val - curr.data
+                if val in store:
+                    store[val] += 1
+                else:
+                    store[val] = 1
+            curr = curr.next
+        return result
+
+    ########## START: PAIRS WITH SUMS ##########
+
 
 dllist = DoublyLinkedList()
 dllist.append(1)
