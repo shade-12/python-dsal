@@ -88,16 +88,58 @@ class DoublyLinkedList():
 
     ########## END: INSERT NODE ##########
 
+    ########## START: DELETE NODE ##########
+    
+    def delete(self, key):
+        """
+        Remove a node where node.data = key from linked list.
+        """
+        if not self.head:
+            return
+
+        if self.head.data == key:
+            # Case 1: Remove the only node from the list
+            if not self.head.next:
+                self.head = None
+            # Case 2: Remove head node
+            else:
+                new_head = self.head.next
+                new_head.prev = None
+                self.head = None
+                self.head = new_head
+            return
+
+        # Case 3: Remove node where node.next is not None
+        curr = self.head.next
+        while curr.next:
+            if curr.data == key:
+                curr.prev.next = curr.next
+                curr.next.prev = curr.prev
+                curr.next, curr.prev = None, None
+                curr = None
+                return
+            curr = curr.next
+
+        # Case 4: Remove node where node.next is None
+        if curr.data == key:
+            curr.prev.next = None
+            curr.next, curr.prev = None, None
+            curr = None
+        return
+
+
+    ########## END: DELETE NODE ##########
+
 
 dllist = DoublyLinkedList()
-
-dllist.prepend(0)
 dllist.append(1)
 dllist.append(2)
 dllist.append(3)
 dllist.append(4)
-dllist.prepend(5)
-dllist.add_after_node(4,6)
-dllist.add_before_node(5,9)
 
+dllist.delete(1)
+dllist.delete(6)
+dllist.delete(4)
+
+dllist.delete(3)
 dllist.print_list()
