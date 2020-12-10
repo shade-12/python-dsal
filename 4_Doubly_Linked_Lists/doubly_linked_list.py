@@ -127,8 +127,27 @@ class DoublyLinkedList():
             curr = None
         return
 
-
     ########## END: DELETE NODE ##########
+
+    ########## START: REVERSE ##########
+
+    def reverse(self):
+        """
+        Reverse doubly linked list.
+        """
+        # Return if linked list has length < 2
+        if not self.head or not self.head.next:
+            return
+
+        curr = self.head
+        while curr.next:
+            nxt = curr.next
+            curr.next, curr.prev = curr.prev, curr.next
+            curr = nxt
+        curr.next, curr.prev = curr.prev, curr.next
+        self.head = curr
+
+    ########## END: REVERSE ##########
 
 
 dllist = DoublyLinkedList()
@@ -136,10 +155,5 @@ dllist.append(1)
 dllist.append(2)
 dllist.append(3)
 dllist.append(4)
-
-dllist.delete(1)
-dllist.delete(6)
-dllist.delete(4)
-
-dllist.delete(3)
+dllist.reverse()
 dllist.print_list()
