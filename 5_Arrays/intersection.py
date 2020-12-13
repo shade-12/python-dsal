@@ -7,6 +7,7 @@ def intersection(a1, a2):
     
     while p1 < len(a1) and p2 < len(a2):
         if a1[p1] == a2[p2]:
+            # No need to check previous value if p1 is 0
             if p1 == 0 or a1[p1] != a1[p1 - 1]:
                 intersection.append(a1[p1])
             p1 += 1
