@@ -114,10 +114,24 @@ class BinaryTree(object):
     def height(self, node):
         if not node:
             return -1
+        left_height = self.height(node.left)
+        right_height = self.height(node.right)
 
-
+        return 1 + max(left_height, right_height)
 
     ########## END: HEIGHT OF TREE ##########
+
+    ########## START: SIZE OF TREE ##########
+
+    def tree_size(self, node):
+        """
+        Number of nodes in tree.
+        """
+        if not node:
+            return 0
+        return 1 + self.tree_size(node.left) + self.tree_size(node.right)
+
+    ########## END: SIZE OF TREE ##########
 
 
 # 1-2-4-5-3-6-7-
