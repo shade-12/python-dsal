@@ -1,3 +1,5 @@
+import math
+
 class Node(object):
     def __init__(self, data):
         self.data = data
@@ -8,6 +10,16 @@ class Node(object):
 class BST(object):
     def __init__(self, root):
         self.root = Node(root)
+
+    def inorder_print_tree(self):
+        if self.root:
+            self._inorder_print_tree(self.root)
+
+    def _inorder_print_tree(self, cur_node):
+        if cur_node:
+            self._inorder_print_tree(cur_node.left)
+            print(str(cur_node.data))
+            self._inorder_print_tree(cur_node.right)
 
     ########## START: INSERTION ##########
 
@@ -52,14 +64,37 @@ class BST(object):
 
     ########## END: SEARCH ##########
 
+    ######### START: CHECK BST PROPERTY ##########
 
-bst = BST(10)
+    def is_bst(self):
+        """
+        Check if a tree is a BST.
+        Definition: 
+        The BST property states that every node on the right subtree has to be larger than the current node, 
+        and every node on the left subtree has to be smaller than the current node.
+        """
+        def _is_bst_recursive(node, max_val=math.inf, min_val=-math.inf):
+            if not node:
+                return True
+            if node.data <= min_val or node.data >= max_val:
+                return False
+            else:
+                left = _is_bst_recursive(node.left, node.data, min_val)
+                right = _is_bst_recursive(node.right, max_val, node.data)
+                return left and right
+
+        return _is_bst_recursive(self.root)
+
+    ######### END: CHECK BST PROPERTY ##########
+
+
+bst = BST(7)
 bst.insert(3)
+bst.insert(10)
+bst.insert(5)
 bst.insert(1)
-bst.insert(25)
+bst.insert(8)
 bst.insert(9)
-bst.insert(13)
+bst.insert(2)
 
-print(bst.search(9))
-print(bst.search(14))
-print(bst.search(1))
+bst.inorder_print_tree()      
