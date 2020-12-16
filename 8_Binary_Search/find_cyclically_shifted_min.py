@@ -6,7 +6,7 @@ def find_cyclically_shifted_min(arr):
     """
     low, high = 0, len(arr) - 1
     while low < high:
-        mid = (low + high) // 2
+        mid = low + (high - low) // 2
     
         if arr[mid] > arr[high]:
             low = mid + 1
