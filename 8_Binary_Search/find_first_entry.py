@@ -1,6 +1,6 @@
 def find_first_entry(arr, target):
     """
-    Find the index of the first element in array where its value == target.
+    Returns the index of the first occurrence of target from an array.
     Array is sorted and can contain duplicates.
     """
     low, high = 0, len(arr) - 1
