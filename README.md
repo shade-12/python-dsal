@@ -57,7 +57,7 @@
 
 8. Binary Search
     - Find the closest number
-    - Find the fixed number
+    - Find fixed point
     - Find bitonic peak
     - Find first entry in list with duplicates
     - Bisect method
