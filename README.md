@@ -2,7 +2,7 @@
 
 1. Stack
     - Determine if brackets are balanced
-    - Reversed string
+    - Reverse string
     - Convert decimal integer to binary 
 
 2. Singly Linked Lists
@@ -15,7 +15,7 @@
     - Merge two sorted linked lists
     - Remove duplicates
     - Nth-to-last node
-    - Count occurences
+    - Count occurrences
     - Rotate
     - Is palindrome
     - Move tail to head
@@ -37,10 +37,10 @@
     - Pairs with sums
 
 5. Arrays
-    - Array Advance Game
+    - Array advance game
     - Arbitrary precision increment
     - Two sum problem
-    - Optimal task sssignment
+    - Optimal task assignment
     - Intersection of two sorted arrays
     - Buy and sell stock
 
@@ -68,7 +68,7 @@
     - Find uppercase letter in string
     - Calculate string length
     - Count consonants in string
-    - Product of teo positive integers
+    - Product of two positive integers
 
 10. String Processing
     - Look-and-say sequence
